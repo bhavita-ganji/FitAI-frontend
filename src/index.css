@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Design Tokens — Warm Light Ivory & Sage Palette */
+  --bg-primary: #FAF9F5;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F4F7F4;
+  --bg-sage-light: #EBF3ED;
+  --bg-sage-muted: #E2EDE5;
+
+  /* Accent Colors */
+  --color-primary: #2D6A4F;
+  --color-primary-hover: #1B4332;
+  --color-primary-light: #40916C;
+  --color-accent-teal: #52B788;
+  --color-accent-lavender: #7B79B1;
+  --color-accent-coral: #E07A5F;
+  --color-accent-gold: #DDA15E;
+
+  /* Neutral Typography & Borders */
+  --text-main: #1F2421;
+  --text-muted: #555B6E;
+  --text-light: #89939E;
+  --border-light: #E3E9E5;
+  --border-focus: #40916C;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 3px rgba(31, 36, 33, 0.04);
+  --shadow-md: 0 4px 12px rgba(31, 36, 33, 0.06);
+  --shadow-lg: 0 10px 25px rgba(31, 36, 33, 0.08);
+  --shadow-hover: 0 8px 20px rgba(45, 106, 79, 0.12);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+
+  /* Fonts */
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-main);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+button {
+  font-family: var(--font-main);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-main);
+  outline: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: #C8D6CD;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A3B8AA;
+}
+
+/* Base Utility Classes */
+.container-fit {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.card-white {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-white:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge-sage {
+  background: var(--bg-sage-light);
+  color: var(--color-primary);
+  border: 1px solid rgba(45, 106, 79, 0.2);
+}
+.badge-teal {
+  background: #E8F7F0;
+  color: #2D6A4F;
+}
+.badge-coral {
+  background: #FDF0ED;
+  color: var(--color-accent-coral);
+}
+.badge-lavender {
+  background: #F2F1FA;
+  color: var(--color-accent-lavender);
+}
+
+/* Pulse animation for Live/Demo indicators */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.95); }
+}
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulseGlow 2s infinite ease-in-out;
+}
