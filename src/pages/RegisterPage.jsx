@@ -41,7 +41,8 @@ export const RegisterPage = () => {
       toast.success(`Account created! Let's personalize your plan, ${userData.fullName}.`);
       navigate('/onboarding');
     } catch (err) {
-      toast.error(err.message || 'Registration failed');
+      const backendMsg = err?.response?.data?.message || err?.response?.data?.error;
+      toast.error(backendMsg || err.message || 'Registration failed');
     } finally {
       setLoading(false);
     }

@@ -40,7 +40,8 @@ export const LoginPage = () => {
         navigate('/onboarding');
       }
     } catch (err) {
-      toast.error(err.message || 'Invalid email or password');
+      const backendMsg = err?.response?.data?.message || err?.response?.data?.error;
+      toast.error(backendMsg || err.message || 'Invalid email or password');
     } finally {
       setLoading(false);
     }
@@ -55,7 +56,8 @@ export const LoginPage = () => {
       toast.success(`Logged in as ${userData.fullName}!`);
       navigate('/dashboard');
     } catch (err) {
-      toast.error(err.message || 'Demo login failed');
+      const backendMsg = err?.response?.data?.message || err?.response?.data?.error;
+      toast.error(backendMsg || err.message || 'Demo login failed');
     } finally {
       setLoading(false);
     }

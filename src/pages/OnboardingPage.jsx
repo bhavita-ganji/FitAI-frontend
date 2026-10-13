@@ -57,7 +57,9 @@ export const OnboardingPage = () => {
       toast.success('Your personalized profile is configured! Welcome to FitAI.');
       navigate('/dashboard');
     } catch (err) {
-      toast.error(err.message || 'Failed to save onboarding profile');
+      // Extract the actual backend error message from the JSON response body
+      const backendMsg = err?.response?.data?.message || err?.response?.data?.error;
+      toast.error(backendMsg || err.message || 'Failed to save onboarding profile. Please try again.');
     } finally {
       setLoading(false);
     }

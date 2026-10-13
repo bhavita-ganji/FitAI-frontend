@@ -22,11 +22,11 @@ export const AuthProvider = ({ children }) => {
         try {
           const res = await authApi.getMe();
           if (res.success && res.data) {
-            setUser((prev) => ({
-              ...prev,
-              ...res.data,
-            }));
-            localStorage.setItem('fitai_user', JSON.stringify({ ...user, ...res.data }));
+            setUser((prev) => {
+              const updated = { ...prev, ...res.data };
+              localStorage.setItem('fitai_user', JSON.stringify(updated));
+              return updated;
+            });
           }
         } catch (err) {
           // Only clear credentials on a definitive 401 (token truly invalid/expired).
