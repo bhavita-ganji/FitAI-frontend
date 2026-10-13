@@ -6,6 +6,7 @@ import { useToast } from '../context/ToastContext';
 import { Button } from '../components/common/Button';
 import { Input } from '../components/common/Input';
 import { Card } from '../components/common/Card';
+import { BackendStatus } from '../components/common/BackendStatus';
 
 export const RegisterPage = () => {
   const [fullName, setFullName] = useState('');
@@ -158,6 +159,9 @@ export const RegisterPage = () => {
           </p>
         </Card>
       </div>
+
+      {/* Render cold-start notice — shows after 5s of loading */}
+      <BackendStatus isLoading={loading} />
     </div>
   );
 };

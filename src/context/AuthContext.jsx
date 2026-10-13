@@ -28,9 +28,16 @@ export const AuthProvider = ({ children }) => {
             }));
             localStorage.setItem('fitai_user', JSON.stringify({ ...user, ...res.data }));
           }
-        } catch {
-          // If token expired or invalid, clear credentials
-          logout();
+        } catch (err) {
+          // Only clear credentials on a definitive 401 (token truly invalid/expired).
+          // On network errors (e.g. Render cold start), keep cached user to avoid
+          // logging out a valid user during backend warmup.
+          const status = err?.response?.status;
+          if (status === 401 || status === 403) {
+            logout();
+          } else {
+            console.warn('[FitAI] Could not verify session (network/server error). Using cached credentials.');
+          }
         }
       }
       setLoading(false);
@@ -38,6 +45,7 @@ export const AuthProvider = ({ children }) => {
 
     verifySession();
   }, [token]);
+
 
   const login = async (email, password) => {
     const res = await authApi.login(email, password);
